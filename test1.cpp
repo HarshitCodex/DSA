@@ -1,51 +1,38 @@
 #include<bits/stdc++.h>
 using namespace std;
-//#define int long long
-#define mod 1000000007
-#define endl "\n"
+#define int long long
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+pair<int,int> dp[10000][10000];
 int32_t main()
 {
-    long long int a,p,q,b;
+    fastio;
+    int n,k;
+    cin>>n>>k;
+    int a[n];
 
-int t;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
 
-scanf("%d",&t);
-
-while(t--)   {
-
-scanf("%lld %lld",&a,&b);
-
-p=a%10;
-
-q=b%4;
-
-if(b==0)
-
-    printf("1\n");
-
-else if(p==1||p==0||p==5||p==6)
-
-printf("%d\n",p);
-
-else if(q==1)
-
-    printf("%d\n",p);
-
-else if(q==2)
-
-    printf("%d\n",((p*p)%10));
-
-else if(q==3)
-
-    printf("%d\n",((p*p*p)%10));
-
-else if(q==0)
-
-    printf("%d\n",((p*p*p*p)%10));
+    memset(dp,0,sizeof(dp));
+    for(int i=0;i<n;i++)
+    {
+        dp[i][i].first = a[i];
+        dp[i][i].second = 0;
+    }
+    for(int i=0;i<n-1;i++)
+    {
+        dp[i][i+1].first = max(a[i],a[i+1]);
+        dp[i][i+1].second = abs(a[i]-a[i+1]);
+    }
+    /*for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<"("<<dp[i][j].first<<","<<dp[i][j].second<<") ";
+        }
+        cout<<endl;
+    }*/
 
 }
-
-return 0;
-}
-//Just added another line to whie using git
